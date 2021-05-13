@@ -1,0 +1,14 @@
+.header {
+    // background-color: black;
+    height: $header-height;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+        height: 50px;
+    }
+    button {
+        @include button;
+        margin: 10px;
+    }
+}

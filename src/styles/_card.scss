@@ -1,0 +1,15 @@
+.cards {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 200px);
+    gap: 30px;
+    background-color: blueviolet;
+    .card {
+        border: blue solid 1px;
+        object-fit: cover;
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
