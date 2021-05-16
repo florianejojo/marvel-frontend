@@ -9,9 +9,13 @@ const SearchBar = ({ setName }) => {
 
     const handleChange = (event) => {
         let str = event.target.value;
+
         let exp = new RegExp(escapeRegExp(str));
         str = String(exp);
+        console.log(typeof str);
+
         const newstr = str.slice(1, str.length - 1);
+
         setName(newstr);
     };
 

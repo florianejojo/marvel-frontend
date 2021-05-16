@@ -25,7 +25,6 @@ function App() {
         <Router>
             <Header></Header>
             <Switch>
-                {/* <Route path="/personnages"></Route> */}
                 <Route path="/comics/:id">
                     <ComicsPerChar />
                 </Route>
@@ -41,11 +40,10 @@ function App() {
                         setTabCookies={setTabCookies}
                         setFavorites={setFavorites}
                         name={name}
-                        setname={setName}
+                        setName={setName}
                     />
                 </Route>
             </Switch>
-            {/* <Background></Background> */}
         </Router>
     );
 }
