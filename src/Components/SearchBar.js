@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const SearchBar = ({ setName }) => {
     function escapeRegExp(str) {
         return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
@@ -12,7 +10,6 @@ const SearchBar = ({ setName }) => {
         str = String(exp);
 
         const newstr = str.slice(1, str.length - 1);
-        console.log(newstr);
 
         setName(newstr);
     };

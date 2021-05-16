@@ -8,20 +8,13 @@ const Favorites = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        // récupérer mes cookies
-        const cookie = Cookies.get("FavoritesChar");
-        console.log(cookie);
+        const cookie = Cookies.get("Favorites");
+
         if (!cookie) {
             setIsLoading(false);
             return;
         }
-
-        // mettre les cookies dans un tableau : tab[0] = string
-
         let tab = cookie.split("|");
-        console.log(tab);
-
-        // convertir le tableau au bon format pour la requête + update le name
 
         function escapeRegExp(str) {
             return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
@@ -38,28 +31,25 @@ const Favorites = () => {
                             var title = "name";
                         }
                         if (str[1] === "O") {
-                            var route = "comics";
-                            var title = "title";
+                            route = "comics";
+                            title = "title";
                         }
-
                         const newstr = str.slice(2, str.length - 1);
-                        const url = `http://localhost:3000/${route}?${title}=${newstr}`;
-                        console.log("url", url);
-                        const response = await axios.get(url);
+                        const url = `https://marvel-replica.herokuapp.com/${route}?${title}=${newstr}`;
 
+                        const response = await axios.get(url);
                         return response.data.results;
                     })
                 );
 
                 setData(tab);
             } catch (error) {
-                console.log(error);
+                console.log(error.message);
             }
         };
         if (tab) fetchdata();
 
         setIsLoading(false);
-        console.log(data);
     }, []);
 
     return isLoading ? (
@@ -67,7 +57,7 @@ const Favorites = () => {
     ) : (
         <div className="container cards">
             {data.map((elem) => {
-                return <Card elem={elem[0]} fav={true} />;
+                return <Card key={elem[0]._id} elem={elem[0]} fav={true} />;
             })}
         </div>
     );

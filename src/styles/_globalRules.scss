@@ -10,12 +10,12 @@ $font-family: "Roboto", sans-serif;
     background-color: $color-red;
     color: white;
     padding: 5px;
-    // border-radius: 5px;
     border: none;
     font-weight: bold;
     &:hover {
         cursor: pointer;
     }
+    border-radius: 10px;
 }
 
 // GLOBAL RULES
@@ -31,15 +31,17 @@ $font-family: "Roboto", sans-serif;
 }
 
 .background {
-    // background-color: white;
     background-image: url("../assets/avengers.jpeg");
-    // position: fixed;
-    // width: 200vh;
-    height: 100%;
-    // z-index: 0;
 
-    // margin: 0 auto;
-    // height: 100vh;
-    // width: 200vh;
-    // position: fixed;
+    height: 100%;
+}
+
+h1 {
+    color: Black;
+    font-family: $font-family;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 100;
+    padding: 20px 0 20px 20px;
+    font-weight: 700;
 }

@@ -16,10 +16,9 @@ const Comics = ({ name, setName }) => {
 
     useEffect(() => {
         const fetchdata = async () => {
-            console.log("comics name", name);
-            const url = `http://localhost:3000/comics?skip=${skip}&limit=${limit}&title=${name}`;
+            const url = `https://marvel-replica.herokuapp.com/comics?skip=${skip}&limit=${limit}&title=${name}`;
             const response = await axios.get(url);
-            console.log(url);
+
             setData(response.data);
             setLimit(response.data.limit);
             setPageMax(Math.ceil(response.data.count / limit));
