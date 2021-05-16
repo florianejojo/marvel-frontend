@@ -15,7 +15,7 @@ const Characters = ({ name, setName }) => {
 
     // pour faire une nouvelle requete avec le bon skip
     const [skip, setSkip] = useState(0);
-    const [limit, setLimit] = useState(5);
+    const [limit, setLimit] = useState(8);
 
     const [pageMax, setPageMax] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +51,7 @@ const Characters = ({ name, setName }) => {
                 {data.map((elem) => {
                     return (
                         // <Link to={`/comics/${elem._id}`}>
-                        <Card key={elem._id} elem={elem} />
+                        <Card key={elem._id} elem={elem} char={true} />
 
                         // </Link>
                     );

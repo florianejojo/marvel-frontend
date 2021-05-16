@@ -1,15 +1,54 @@
 .cards {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(4, 200px);
-    gap: 30px;
-    background-color: blueviolet;
+    grid-template-columns: repeat(4, 250px);
+    gap: 20px;
+
+    // background-color: blueviolet;
     .card {
-        border: blue solid 1px;
+        // border: #9b75a5 solid 3px;
+        // background-color: rgba(155, 117, 165, 0.5);
+        background-image: url("../assets/ciel-etoile.jpeg");
+        opacity: 0.85;
+        background-size: cover;
+        padding: 20px;
+        background-blend-mode: multiply;
+        border-radius: 10px;
         object-fit: cover;
+        h2 {
+            color: white;
+            font-family: $font-family;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 100;
+            padding: 20px;
+            font-weight: 700;
+        }
+        #filledHeart {
+            // background-color: red;
+            position: sticky;
+            font-size: 30px;
+            color: white;
+        }
+        #emptyHeart {
+            // background-color: red;
+            position: sticky;
+            font-size: 30px;
+            color: white;
+        }
+
         img {
             width: 100%;
             object-fit: cover;
+            border-radius: 5px;
+        }
+        p {
+            color: white;
+            font-family: $font-family;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 100;
+            padding: 20px;
         }
     }
 }

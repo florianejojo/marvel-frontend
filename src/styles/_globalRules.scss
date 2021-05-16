@@ -1,8 +1,9 @@
 // VARIABLES
 
 $color-red: #ed181e;
-$header-height: 60px;
+$header-height: 130px;
 $container-width: 1000px;
+$font-family: "Roboto", sans-serif;
 
 // MIXIN
 @mixin button {
@@ -26,10 +27,18 @@ $container-width: 1000px;
 .container {
     width: $container-width;
     margin: 0 auto;
+    padding: 30px;
 }
 
 .background {
-    background-color: white;
+    // background-color: white;
+    background-image: url("../assets/avengers.jpeg");
+    // position: fixed;
+    // width: 200vh;
+    height: 100%;
+    // z-index: 0;
+
+    // margin: 0 auto;
     // height: 100vh;
     // width: 200vh;
     // position: fixed;

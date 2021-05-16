@@ -1,25 +1,28 @@
 import LogoMarvel from "../assets/logoMarvel.svg";
 import { Link } from "react-router-dom";
-
+import stars from "../assets/ciel-etoile.jpeg";
 const Header = () => {
     return (
-        <div className="background">
-            <div className="header container">
-                <Link to="/">
-                    <img src={LogoMarvel} alt="logoMarvel" />
-                </Link>
-
-                <nav>
+        <div>
+            <div className="header">
+                {/* <img src={stars} alt={stars} id="back" /> */}
+                <div className=" header container">
                     <Link to="/">
-                        <button>Personnages</button>
+                        <img src={LogoMarvel} alt="logoMarvel" id="logo" />
                     </Link>
-                    <Link to="/comics">
-                        <button>Comics</button>
-                    </Link>
-                    <Link to="/favoris">
-                        <button>Favoris</button>
-                    </Link>
-                </nav>
+
+                    <nav>
+                        <Link to="/">
+                            <button>Personnages</button>
+                        </Link>
+                        <Link to="/comics">
+                            <button>Comics</button>
+                        </Link>
+                        <Link to="/favoris">
+                            <button>Favoris</button>
+                        </Link>
+                    </nav>
+                </div>
             </div>
         </div>
     );

@@ -18,11 +18,10 @@ const SearchBar = ({ setName }) => {
     };
 
     return (
-        <div className="container">
+        <div className="container searchBar">
             <input
                 type="text"
                 placeholder="Ex : Lorna Dane"
-                className="searchBar"
                 onChange={handleChange}
             />
         </div>

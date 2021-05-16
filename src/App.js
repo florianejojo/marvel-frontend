@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
+import background from "./assets/avengers.jpeg";
 
 import Header from "./Components/Header.js";
 // import Home from "./Containers/Home";
@@ -9,6 +10,8 @@ import Characters from "./Containers/Characters";
 // import Background from "./Components/Background";
 import Cookies from "js-cookie";
 import Comics from "./Containers/Comics";
+
+import stars from "../src/assets/ciel-etoile.jpeg";
 
 function App() {
     const [tabCookies, setTabCookies] = useState(
@@ -23,7 +26,10 @@ function App() {
     };
     return (
         <Router>
-            <Header></Header>
+            {/* <div className="background "> */}
+            <Header />
+            {/* <img src={background} alt={background} className="background" /> */}
+
             <Switch>
                 <Route path="/comics/:id">
                     <ComicsPerChar />
@@ -44,6 +50,7 @@ function App() {
                     />
                 </Route>
             </Switch>
+            {/* </div> */}
         </Router>
     );
 }

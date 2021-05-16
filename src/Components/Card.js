@@ -14,9 +14,14 @@ const Card = ({ elem, setFavorites, fav, comics }) => {
         }
     }, []);
 
-    const favorites = "FavoritesChar";
+    const favorites = "Favorites";
 
-    const addToFavorites = (elemId) => {
+    const addToFavorites = (elem) => {
+        if (comics) {
+            var elemId = "O" + elem.title;
+        } else {
+            var elemId = "A" + elem.name;
+        }
         let cookies = Cookies.get(favorites);
         let tab = [];
         if (cookies) {
@@ -26,11 +31,18 @@ const Card = ({ elem, setFavorites, fav, comics }) => {
             if (index >= 0) return;
         }
         tab.push(elemId);
+        console.log(tab);
         cookies = tab.join("|");
+
         Cookies.set(favorites, cookies);
     };
 
-    const deleteFromFavorites = (elemId) => {
+    const deleteFromFavorites = (elem) => {
+        if (comics) {
+            var elemId = "O" + elem.title;
+        } else {
+            var elemId = "A" + elem.name;
+        }
         let cookies = Cookies.get(favorites);
         if (!cookies) {
             return;
@@ -44,7 +56,9 @@ const Card = ({ elem, setFavorites, fav, comics }) => {
             Cookies.remove(favorites);
         }
         tab.splice(index);
+        console.log(tab);
         cookies = tab.join("|");
+
         Cookies.set(favorites, cookies);
     };
 
@@ -59,8 +73,7 @@ const Card = ({ elem, setFavorites, fav, comics }) => {
                     id="filledHeart"
                     onClick={() => {
                         // envoyer soit name soit title
-                        if (comics) deleteFromFavorites(elem.title);
-                        else deleteFromFavorites(elem.name);
+                        deleteFromFavorites(elem);
                         setLiked(false);
                     }}
                 ></i>
@@ -70,8 +83,7 @@ const Card = ({ elem, setFavorites, fav, comics }) => {
                     id="emptyHeart"
                     onClick={() => {
                         // console.log(elem);
-                        if (comics) addToFavorites(elem.title);
-                        else addToFavorites(elem.name);
+                        addToFavorites(elem);
                         setLiked(true);
                     }}
                 ></i>

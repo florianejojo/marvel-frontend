@@ -1,0 +1,17 @@
+.pages {
+    text-align: center;
+    // background-color: white;
+    z-index: auto;
+    button {
+        @include button;
+        margin: 10px;
+        padding: 10px;
+    }
+    span {
+        // background-color: white;
+        font-family: $font-family;
+        font-weight: 700;
+        font-size: 20px;
+        color: #17171b;
+    }
+}

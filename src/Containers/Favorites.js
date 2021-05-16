@@ -19,6 +19,7 @@ const Favorites = () => {
         // mettre les cookies dans un tableau : tab[0] = string
 
         let tab = cookie.split("|");
+        console.log(tab);
 
         // convertir le tableau au bon format pour la requête + update le name
 
@@ -32,14 +33,24 @@ const Favorites = () => {
                     tab.map(async (elem) => {
                         let exp = new RegExp(escapeRegExp(elem));
                         let str = String(exp);
-                        const newstr = str.slice(1, str.length - 1);
-                        const url = `http://localhost:3000/characters?name=${newstr}`;
+                        if (str[1] === "A") {
+                            var route = "characters";
+                            var title = "name";
+                        }
+                        if (str[1] === "O") {
+                            var route = "comics";
+                            var title = "title";
+                        }
+
+                        const newstr = str.slice(2, str.length - 1);
+                        const url = `http://localhost:3000/${route}?${title}=${newstr}`;
                         console.log("url", url);
                         const response = await axios.get(url);
+
                         return response.data.results;
                     })
                 );
-                // console.log(tab[0][0].name);
+
                 setData(tab);
             } catch (error) {
                 console.log(error);

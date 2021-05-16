@@ -4,7 +4,7 @@ const Pages = ({ pageNb, setPageNb, setSkip, limit, pageMax, setLimit }) => {
     // const [pageMax, setPageMax] = useState(Math.ceil(count / limit));
 
     return (
-        <div className="container">
+        <div className="container pages">
             <button
                 onClick={() => {
                     if (pageNb > 1) {

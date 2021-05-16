@@ -9,7 +9,7 @@ const Comics = ({ name, setName }) => {
     const [data, setData] = useState();
     const [pageNb, setPageNb] = useState(1);
     const [skip, setSkip] = useState(0);
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState(8);
 
     const [pageMax, setPageMax] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
