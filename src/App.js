@@ -18,6 +18,11 @@ function App() {
         Cookies.set("Favorites", elemId);
         setTabCookies(elemId);
     };
+
+    const escapeRegExp = (str) => {
+        return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
+    };
+
     return (
         <Router>
             <Header />
@@ -26,10 +31,18 @@ function App() {
                     <ComicsPerChar />
                 </Route>
                 <Route path="/comics">
-                    <Comics name={name} setName={setName} />
+                    <Comics
+                        name={name}
+                        setName={setName}
+                        escapeRegExp={escapeRegExp}
+                    />
                 </Route>
                 <Route path="/favoris">
-                    <Favorites name={name} setName={setName} />
+                    <Favorites
+                        name={name}
+                        setName={setName}
+                        escapeRegExp={escapeRegExp}
+                    />
                 </Route>
                 <Route path="/">
                     <Characters
@@ -38,6 +51,7 @@ function App() {
                         setFavorites={setFavorites}
                         name={name}
                         setName={setName}
+                        escapeRegExp={escapeRegExp}
                     />
                 </Route>
             </Switch>

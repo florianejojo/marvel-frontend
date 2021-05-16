@@ -1,7 +1,7 @@
-const SearchBar = ({ setName }) => {
-    function escapeRegExp(str) {
-        return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
-    }
+const SearchBar = ({ setName, escapeRegExp }) => {
+    // function escapeRegExp(str) {
+    //     return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
+    // }
 
     const handleChange = (event) => {
         let str = event.target.value;

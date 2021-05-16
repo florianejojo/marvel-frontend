@@ -5,7 +5,7 @@ import SearchBar from "../Components/SearchBar";
 import Pages from "../Components/Pages";
 import Card from "../Components/Card";
 
-const Comics = ({ name, setName }) => {
+const Comics = ({ name, setName, escapeRegExp }) => {
     const [data, setData] = useState();
     const [pageNb, setPageNb] = useState(1);
     const [skip, setSkip] = useState(0);
@@ -31,7 +31,7 @@ const Comics = ({ name, setName }) => {
         "en chargement ... "
     ) : (
         <div className=" container">
-            <SearchBar setName={setName} />
+            <SearchBar setName={setName} escapeRegExp={escapeRegExp} />
             <Pages
                 pageNb={pageNb}
                 setPageNb={setPageNb}

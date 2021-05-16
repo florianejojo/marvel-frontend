@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "../Components/Card";
 
-const Favorites = () => {
+const Favorites = ({ escapeRegExp }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -15,10 +15,6 @@ const Favorites = () => {
             return;
         }
         let tab = cookie.split("|");
-
-        function escapeRegExp(str) {
-            return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
-        }
 
         const fetchdata = async () => {
             try {
@@ -50,7 +46,7 @@ const Favorites = () => {
         if (tab) fetchdata();
 
         setIsLoading(false);
-    }, []);
+    }, [escapeRegExp]);
 
     return isLoading ? (
         "isLoading..."

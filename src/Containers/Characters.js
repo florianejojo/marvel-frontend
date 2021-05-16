@@ -6,7 +6,7 @@ import SearchBar from "../Components/SearchBar";
 
 import Card from "../Components/Card";
 
-const Characters = ({ name, setName }) => {
+const Characters = ({ name, setName, escapeRegExp }) => {
     const [data, setData] = useState();
 
     const [pageNb, setPageNb] = useState(1);
@@ -35,7 +35,7 @@ const Characters = ({ name, setName }) => {
         "isLoading..."
     ) : (
         <div>
-            <SearchBar setName={setName} />
+            <SearchBar setName={setName} escapeRegExp={escapeRegExp} />
             <Pages
                 pageNb={pageNb}
                 setPageNb={setPageNb}
