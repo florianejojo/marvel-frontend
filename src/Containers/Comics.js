@@ -42,18 +42,7 @@ const Comics = () => {
             />
             <div className="cards">
                 {data.results.map((elem) => {
-                    return (
-                        <Card key={elem._id} elem={elem} />
-
-                        // <div key={elem._id} className="card">
-                        //     <h2>{elem.title}</h2>
-                        //     <img
-                        //         src={`${elem.thumbnail.path}.${elem.thumbnail.extension}`}
-                        //         alt={elem.title}
-                        //     />
-                        //     <p>{elem.description}</p>
-                        // </div>
-                    );
+                    return <Card key={elem._id} elem={elem} />;
                 })}
             </div>
         </div>

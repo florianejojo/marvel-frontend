@@ -1,8 +1,18 @@
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-const Card = ({ elem, setFavorites }) => {
-    // const [cookies, setCookies] = useState();
+const Card = ({ elem, setFavorites, fav }) => {
+    const [cookies, setCookies] = useState();
+    const history = useHistory();
+
+    const [liked, setLiked] = useState(false);
+
+    useEffect(() => {
+        if (fav) {
+            setLiked(true);
+        }
+    }, []);
 
     const favorites = "FavoritesChar";
 
@@ -43,28 +53,34 @@ const Card = ({ elem, setFavorites }) => {
         cookies = tab.join("|");
         Cookies.set(favorites, cookies);
         console.log(tab, cookies);
+        // history.go(0);
     };
 
     return (
         <div className="card">
             <h2>{elem.name}</h2>
             <h2>{elem.title}</h2>
-            <i
-                className="far fa-heart"
-                id="emptyHeart"
-                onClick={() => {
-                    console.log(elem);
-                    addToFavorites(elem.name);
-                }}
-            ></i>
 
-            <i
-                className="fas fa-heart"
-                id="filledHeart"
-                onClick={() => {
-                    deleteFromFavorites(elem.name);
-                }}
-            ></i>
+            {liked ? (
+                <i
+                    className="fas fa-heart"
+                    id="filledHeart"
+                    onClick={() => {
+                        deleteFromFavorites(elem.name);
+                        setLiked(false);
+                    }}
+                ></i>
+            ) : (
+                <i
+                    className="far fa-heart"
+                    id="emptyHeart"
+                    onClick={() => {
+                        console.log(elem);
+                        addToFavorites(elem.name);
+                        setLiked(true);
+                    }}
+                ></i>
+            )}
 
             <img
                 src={elem.thumbnail.path + "." + elem.thumbnail.extension}

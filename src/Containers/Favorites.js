@@ -56,7 +56,7 @@ const Favorites = () => {
         <div className="container cards">
             {data.map((elem) => {
                 return (
-                    <Card elem={elem[0]} />
+                    <Card elem={elem[0]} fav={true} />
                     // <div className="card">
                     //     <h2> {elem[0].name}</h2>
                     //     <img
