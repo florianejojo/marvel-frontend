@@ -3,23 +3,26 @@ import { useState } from "react";
 const SearchBar = ({ setName }) => {
     // const [input, setInput] = useState("");
 
-    // const handleSubmit = (event) => {
-    // event.preventDefault();
-    // };
+    function escapeRegExp(str) {
+        return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
+    }
+
+    const handleChange = (event) => {
+        let str = event.target.value;
+        let exp = new RegExp(escapeRegExp(str));
+        str = String(exp);
+        const newstr = str.slice(1, str.length - 1);
+        setName(newstr);
+    };
+
     return (
         <div className="container">
-            {/* <form onSubmit={handleSubmit}> */}
             <input
                 type="text"
                 placeholder="Ex : Lorna Dane"
                 className="searchBar"
-                onChange={(event) => {
-                    setName(event.target.value);
-                }}
+                onChange={handleChange}
             />
-
-            {/* <button type="submit">Rechercher</button> */}
-            {/* </form> */}
         </div>
     );
 };

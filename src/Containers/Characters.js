@@ -4,17 +4,24 @@ import axios from "axios";
 import Pages from "../Components/Pages";
 import SearchBar from "../Components/SearchBar";
 import Cookies from "js-cookie";
+import Card from "../Components/Card";
 
-const Characters = ({ tabCookies, setTabCookies, setFavorites }) => {
+const Characters = ({
+    tabCookies,
+    setTabCookies,
+    setFavorites,
+    name,
+    setName,
+}) => {
     const [data, setData] = useState();
+    const favorites = "FavoritesChar";
 
     //numéros de pages affichés
     const [pageNb, setPageNb] = useState(1);
 
     // pour faire une nouvelle requete avec le bon skip
     const [skip, setSkip] = useState(0);
-    const [limit, setLimit] = useState(3);
-    const [name, setName] = useState("");
+    const [limit, setLimit] = useState(5);
 
     const [pageMax, setPageMax] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
@@ -33,26 +40,40 @@ const Characters = ({ tabCookies, setTabCookies, setFavorites }) => {
         fetchdata();
     }, [skip, limit, name]);
 
-    // const tabCookies = [];
     // const addToFavorites = (elemId) => {
-    // setTabCookies(Cookies.get("Favorites"));
-    // const newTab = [...tabCookies];
-    // Modifie la copie
-    // newTab.push(elemId);
-    // Mette à jour le state avec la copie
+    //     let cookies = Cookies.get(favorites);
+    //     let tab = [];
+    //     if (cookies) {
+    //         tab = cookies.split("|");
 
-    // setFavorites(newTab);
+    //         const index = tab.indexOf(elemId);
+    //         if (index >= 0) return;
+    //     }
+    //     tab.push(elemId);
+    //     cookies = tab.join("|");
+    //     Cookies.set(favorites, cookies);
     // };
 
     // const deleteFromFavorites = (elemId) => {
-    //     let tabCookies = [];
-    //     if (Cookies.get("Favorites")) {
-    //         tabCookies = Cookies.get("Favorites");
+    //     let cookies = Cookies.get(favorites);
+    //     if (!cookies) {
+    //         return;
     //     }
-    //     const index = tabCookies.findIndex(elemId);
-    //     tabCookies.splice(index, 1);
-    //     Cookies.set("Favorites", tabCookies);
-    //     console.log(tabCookies);
+    //     const tab = cookies.split("|");
+
+    //     const index = tab.indexOf(elemId);
+
+    //     if (index < 0) {
+    //         return;
+    //     }
+    //     if (tab.length === 1) {
+    //         Cookies.remove(favorites);
+    //     }
+
+    //     tab.splice(index);
+    //     cookies = tab.join("|");
+    //     Cookies.set(favorites, cookies);
+    //     console.log(tab, cookies);
     // };
 
     return isLoading ? (
@@ -71,37 +92,27 @@ const Characters = ({ tabCookies, setTabCookies, setFavorites }) => {
             <div className="container cards">
                 {data.map((elem) => {
                     return (
-                        <div key={elem._id} className="card">
-                            <h1>{elem.name}</h1>
-
-                            <i
-                                className="far fa-heart"
-                                id="emptyHeart"
-                                // onClick={() => {
-                                //     addToFavorites(elem._id);
-                                // }}
-                            ></i>
-
-                            <i
-                                className="fas fa-heart"
-                                id="filledHeart"
-                                // onClick={() => {
-                                //     deleteFromFavorites(elem._id);
-                                // }}
-                            ></i>
-                            <Link to={`/comics/${elem._id}`}>
-                                <img
-                                    src={
-                                        elem.thumbnail.path +
-                                        "." +
-                                        elem.thumbnail.extension
-                                    }
-                                    alt={elem.name}
-                                />
-                            </Link>
-
-                            <p>{elem.description}</p>
-                        </div>
+                        // <Link to={`/comics/${elem._id}`}>
+                        <Card
+                            key={elem._id}
+                            elem={elem}
+                            tabCookies={tabCookies}
+                            setTabCookies={setTabCookies}
+                            setFavorites={setFavorites}
+                        />
+                        // {/* <div key={elem._id} className="card">
+                        //     <h2>{elem.name}</h2>
+                        //     <img
+                        //         src={
+                        //             elem.thumbnail.path +
+                        //             "." +
+                        //             elem.thumbnail.extension
+                        //         }
+                        //         alt={elem.name}
+                        //     />
+                        //     <p>{elem.description}</p>
+                        // </div> */}
+                        // </Link>
                     );
                 })}
             </div>

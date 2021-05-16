@@ -12,9 +12,10 @@ import Comics from "./Containers/Comics";
 
 function App() {
     const [tabCookies, setTabCookies] = useState(
-        Cookies.get("Favorites") || []
+        Cookies.get("Favorites") || ""
     );
-    console.log(tabCookies);
+    // console.log(tabCookies);
+    const [name, setName] = useState("");
 
     const setFavorites = (elemId) => {
         Cookies.set("Favorites", elemId);
@@ -32,13 +33,15 @@ function App() {
                     <Comics />
                 </Route>
                 <Route path="/favoris">
-                    <Favorites />
+                    <Favorites name={name} setName={setName} />
                 </Route>
                 <Route path="/">
                     <Characters
                         tabCookies={tabCookies}
                         setTabCookies={setTabCookies}
                         setFavorites={setFavorites}
+                        name={name}
+                        setname={setName}
                     />
                 </Route>
             </Switch>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "../Components/SearchBar";
 import Pages from "../Components/Pages";
+import Card from "../Components/Card";
 
 const Comics = () => {
     const [data, setData] = useState();
@@ -12,7 +13,6 @@ const Comics = () => {
     const [name, setName] = useState("");
     const [pageMax, setPageMax] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    // console.log(name);
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -43,14 +43,16 @@ const Comics = () => {
             <div className="cards">
                 {data.results.map((elem) => {
                     return (
-                        <div key={elem._id} className="card">
-                            <h2>{elem.title}</h2>
-                            <img
-                                src={`${elem.thumbnail.path}.${elem.thumbnail.extension}`}
-                                alt={elem.title}
-                            />
-                            <p>{elem.description}</p>
-                        </div>
+                        <Card key={elem._id} elem={elem} />
+
+                        // <div key={elem._id} className="card">
+                        //     <h2>{elem.title}</h2>
+                        //     <img
+                        //         src={`${elem.thumbnail.path}.${elem.thumbnail.extension}`}
+                        //         alt={elem.title}
+                        //     />
+                        //     <p>{elem.description}</p>
+                        // </div>
                     );
                 })}
             </div>
