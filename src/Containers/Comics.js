@@ -5,20 +5,21 @@ import SearchBar from "../Components/SearchBar";
 import Pages from "../Components/Pages";
 import Card from "../Components/Card";
 
-const Comics = () => {
+const Comics = ({ name, setName }) => {
     const [data, setData] = useState();
     const [pageNb, setPageNb] = useState(1);
     const [skip, setSkip] = useState(0);
-    const [limit, setLimit] = useState(3);
-    const [name, setName] = useState("");
+    const [limit, setLimit] = useState(10);
+
     const [pageMax, setPageMax] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchdata = async () => {
-            const response = await axios.get(
-                `http://localhost:3000/comics?skip=${skip}&limit=${limit}&name=${name}`
-            );
+            console.log("comics name", name);
+            const url = `http://localhost:3000/comics?skip=${skip}&limit=${limit}&title=${name}`;
+            const response = await axios.get(url);
+            console.log(url);
             setData(response.data);
             setLimit(response.data.limit);
             setPageMax(Math.ceil(response.data.count / limit));
@@ -42,7 +43,7 @@ const Comics = () => {
             />
             <div className="cards">
                 {data.results.map((elem) => {
-                    return <Card key={elem._id} elem={elem} />;
+                    return <Card key={elem._id} elem={elem} comics={true} />;
                 })}
             </div>
         </div>

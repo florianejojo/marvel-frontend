@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-const Card = ({ elem, setFavorites, fav }) => {
+const Card = ({ elem, setFavorites, fav, comics }) => {
     const [cookies, setCookies] = useState();
     const history = useHistory();
 
@@ -17,7 +17,6 @@ const Card = ({ elem, setFavorites, fav }) => {
     const favorites = "FavoritesChar";
 
     const addToFavorites = (elemId) => {
-        console.log(elemId);
         let cookies = Cookies.get(favorites);
         let tab = [];
         if (cookies) {
@@ -27,9 +26,7 @@ const Card = ({ elem, setFavorites, fav }) => {
             if (index >= 0) return;
         }
         tab.push(elemId);
-
         cookies = tab.join("|");
-
         Cookies.set(favorites, cookies);
     };
 
@@ -39,21 +36,16 @@ const Card = ({ elem, setFavorites, fav }) => {
             return;
         }
         const tab = cookies.split("|");
-
         const index = tab.indexOf(elemId);
-
         if (index < 0) {
             return;
         }
         if (tab.length === 1) {
             Cookies.remove(favorites);
         }
-
         tab.splice(index);
         cookies = tab.join("|");
         Cookies.set(favorites, cookies);
-        console.log(tab, cookies);
-        // history.go(0);
     };
 
     return (
@@ -66,7 +58,9 @@ const Card = ({ elem, setFavorites, fav }) => {
                     className="fas fa-heart"
                     id="filledHeart"
                     onClick={() => {
-                        deleteFromFavorites(elem.name);
+                        // envoyer soit name soit title
+                        if (comics) deleteFromFavorites(elem.title);
+                        else deleteFromFavorites(elem.name);
                         setLiked(false);
                     }}
                 ></i>
@@ -75,8 +69,9 @@ const Card = ({ elem, setFavorites, fav }) => {
                     className="far fa-heart"
                     id="emptyHeart"
                     onClick={() => {
-                        console.log(elem);
-                        addToFavorites(elem.name);
+                        // console.log(elem);
+                        if (comics) addToFavorites(elem.title);
+                        else addToFavorites(elem.name);
                         setLiked(true);
                     }}
                 ></i>

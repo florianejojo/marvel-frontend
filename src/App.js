@@ -29,7 +29,7 @@ function App() {
                     <ComicsPerChar />
                 </Route>
                 <Route path="/comics">
-                    <Comics />
+                    <Comics name={name} setName={setName} />
                 </Route>
                 <Route path="/favoris">
                     <Favorites name={name} setName={setName} />

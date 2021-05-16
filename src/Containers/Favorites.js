@@ -34,6 +34,7 @@ const Favorites = () => {
                         let str = String(exp);
                         const newstr = str.slice(1, str.length - 1);
                         const url = `http://localhost:3000/characters?name=${newstr}`;
+                        console.log("url", url);
                         const response = await axios.get(url);
                         return response.data.results;
                     })
@@ -55,20 +56,7 @@ const Favorites = () => {
     ) : (
         <div className="container cards">
             {data.map((elem) => {
-                return (
-                    <Card elem={elem[0]} fav={true} />
-                    // <div className="card">
-                    //     <h2> {elem[0].name}</h2>
-                    //     <img
-                    //         src={
-                    //             elem[0].thumbnail.path +
-                    //             "." +
-                    //             elem[0].thumbnail.extension
-                    //         }
-                    //         alt={elem[0].name}
-                    //     />
-                    // </div>
-                );
+                return <Card elem={elem[0]} fav={true} />;
             })}
         </div>
     );

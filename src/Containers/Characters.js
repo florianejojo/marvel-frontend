@@ -6,13 +6,7 @@ import SearchBar from "../Components/SearchBar";
 import Cookies from "js-cookie";
 import Card from "../Components/Card";
 
-const Characters = ({
-    tabCookies,
-    setTabCookies,
-    setFavorites,
-    name,
-    setName,
-}) => {
+const Characters = ({ name, setName }) => {
     const [data, setData] = useState();
     const favorites = "FavoritesChar";
 
@@ -57,13 +51,7 @@ const Characters = ({
                 {data.map((elem) => {
                     return (
                         // <Link to={`/comics/${elem._id}`}>
-                        <Card
-                            key={elem._id}
-                            elem={elem}
-                            tabCookies={tabCookies}
-                            setTabCookies={setTabCookies}
-                            setFavorites={setFavorites}
-                        />
+                        <Card key={elem._id} elem={elem} />
 
                         // </Link>
                     );
