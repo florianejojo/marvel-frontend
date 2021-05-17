@@ -4,6 +4,8 @@ $color-red: #ed181e;
 $header-height: 130px;
 $container-width: 1000px;
 $font-family: "Roboto", sans-serif;
+$rupturePointWidth1: 900px;
+$rupturePointWidth2: 650px;
 
 // MIXIN
 @mixin button {
@@ -16,6 +18,10 @@ $font-family: "Roboto", sans-serif;
         cursor: pointer;
     }
     border-radius: 10px;
+    @media (max-width: $rupturePointWidth1) {
+        height: 30px;
+        font-size: 12px;
+    }
 }
 
 // GLOBAL RULES
@@ -25,7 +31,7 @@ $font-family: "Roboto", sans-serif;
 }
 
 .container {
-    width: $container-width;
+    max-width: $container-width;
     margin: 0 auto;
     padding: 30px;
 }

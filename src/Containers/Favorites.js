@@ -53,7 +53,14 @@ const Favorites = ({ escapeRegExp }) => {
     ) : (
         <div className="container cards">
             {data.map((elem) => {
-                return <Card key={elem[0]._id} elem={elem[0]} fav={true} />;
+                return (
+                    <Card
+                        key={elem[0]._id}
+                        elem={elem[0]}
+                        fav={true}
+                        char={elem[0].name}
+                    />
+                );
             })}
         </div>
     );
