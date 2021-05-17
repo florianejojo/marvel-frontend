@@ -5,19 +5,10 @@ import Header from "./Components/Header.js";
 import ComicsPerChar from "./Containers/ComicsPerChar";
 import Favorites from "./Containers/Favorites";
 import Characters from "./Containers/Characters";
-import Cookies from "js-cookie";
 import Comics from "./Containers/Comics";
 
 function App() {
-    const [tabCookies, setTabCookies] = useState(
-        Cookies.get("Favorites") || ""
-    );
     const [name, setName] = useState("");
-
-    const setFavorites = (elemId) => {
-        Cookies.set("Favorites", elemId);
-        setTabCookies(elemId);
-    };
 
     const escapeRegExp = (str) => {
         return str.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
@@ -46,9 +37,6 @@ function App() {
                 </Route>
                 <Route path="/">
                     <Characters
-                        tabCookies={tabCookies}
-                        setTabCookies={setTabCookies}
-                        setFavorites={setFavorites}
                         name={name}
                         setName={setName}
                         escapeRegExp={escapeRegExp}
