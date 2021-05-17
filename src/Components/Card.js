@@ -4,12 +4,26 @@ import { Link } from "react-router-dom";
 
 const Card = ({ elem, fav, comics, char }) => {
     const [liked, setLiked] = useState(false);
+    const [tabCookies, setTabCookies] = useState([]);
 
     useEffect(() => {
-        if (fav) {
-            setLiked(true);
+        // if (fav) {
+        //     setLiked(true);
+        // }
+        const cookie = Cookies.get("Favorites");
+
+        if (!cookie) {
+            return;
         }
-    }, [fav]);
+        let tab = cookie.split("|");
+        tab = tab.map((elem) => {
+            const newstr = elem.slice(1);
+            return newstr;
+        });
+        setTabCookies(tab);
+
+        // on cherche l'index de title ou name dans elem, si on le trouve: setLiked(True)
+    }, []);
 
     const favorites = "Favorites";
 
@@ -28,10 +42,13 @@ const Card = ({ elem, fav, comics, char }) => {
             if (index >= 0) return;
         }
         tab.push(elemId);
+        setTabCookies(tab);
+        console.log(tabCookies);
 
         cookies = tab.join("|");
 
         Cookies.set(favorites, cookies);
+        setLiked(true);
     };
 
     const deleteFromFavorites = (elem) => {
@@ -56,24 +73,26 @@ const Card = ({ elem, fav, comics, char }) => {
             Cookies.remove(favorites);
         }
         tab.splice(index);
+        setTabCookies(tab);
 
         cookies = tab.join("|");
 
         Cookies.set(favorites, cookies);
+        setLiked(false);
     };
 
     return (
         <div className="card">
+            {console.log(tabCookies.indexOf(elem.name || elem.title))}
             <h2>{elem.name}</h2>
             <h2>{elem.title}</h2>
 
-            {liked ? (
+            {tabCookies.indexOf(elem.name || elem.title) >= 0 || liked ? (
                 <i
                     className="fas fa-heart"
                     id="filledHeart"
                     onClick={() => {
                         deleteFromFavorites(elem);
-                        setLiked(false);
                     }}
                 ></i>
             ) : (
@@ -82,7 +101,6 @@ const Card = ({ elem, fav, comics, char }) => {
                     id="emptyHeart"
                     onClick={() => {
                         addToFavorites(elem);
-                        setLiked(true);
                     }}
                 ></i>
             )}

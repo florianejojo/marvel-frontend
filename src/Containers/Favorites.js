@@ -57,7 +57,7 @@ const Favorites = ({ escapeRegExp }) => {
                     <Card
                         key={elem[0]._id}
                         elem={elem[0]}
-                        fav={true}
+                        // fav={true}
                         char={elem[0].name}
                     />
                 );
